@@ -1,0 +1,111 @@
+/*
+    CSS é a parte visual do projeto.
+    Aqui definimos cores, tamanhos, sombras, animações e aparência das cartas.
+*/
+
+body {
+    background: linear-gradient(135deg, #50db91 0%, #1e90ff 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.game-card {
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+.stat-value {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #222;
+}
+
+.empty-board {
+    color: #444;
+}
+
+/* O JavaScript troca a classe do tabuleiro para memory-board quando o jogo começa. */
+.memory-board {
+    display: grid;
+    gap: 12px;
+}
+
+.memory-card {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border: 0;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #263238, #111827);
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    user-select: none;
+}
+
+.memory-card:hover:not(.flipped):not(.matched) {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+}
+
+.memory-card.flipped {
+    background: #ffffff;
+    color: #111827;
+    transform: scale(1.02);
+    outline: 3px solid rgba(30, 144, 255, 0.35);
+}
+
+.memory-card.matched {
+    background: linear-gradient(135deg, #1f9d55, #34d399);
+    color: #ffffff;
+    cursor: default;
+    outline: none;
+}
+
+.memory-card:disabled {
+    cursor: default;
+}
+
+.card-content {
+    line-height: 1;
+}
+
+.match-animation {
+    animation: pulse-match 0.35s ease;
+}
+
+@keyframes pulse-match {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.13);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 576px) {
+    .game-card {
+        border-radius: 16px;
+    }
+
+    .memory-board {
+        gap: 8px;
+    }
+
+    .memory-card {
+        border-radius: 12px;
+    }
+}
